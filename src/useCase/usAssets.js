@@ -1,6 +1,9 @@
-
 module.exports = (httpRepository, mongoRepository, log) => {
+
     module.latestAsset = async (ticker) => {
+
+        ticker = Array.isArray(ticker) ? ticker.join(',').toUpperCase() : ticker.toUpperCase();
+
         try {
             var data = await httpRepository.GetAssetsByTicker(ticker);
         } catch (error) {

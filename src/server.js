@@ -15,7 +15,7 @@ const log = bunyan.createLogger({
             level: 'info'
         },
         seq.createStream({
-            serverUrl: 'http://localhost:5341',
+            serverUrl: require('./settings.json').seqUrl,
             level: 'info'
         })
     ]
