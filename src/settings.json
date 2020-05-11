@@ -1,4 +1,7 @@
 {
-    "mongoConnetionString": "",
-    "assetsUrl":"https://financialmodelingprep.com/api/v3/quote/{ticker}"
+    "mongoConfig": {
+        "connectionString": "mongodb+srv://dev:development@cluster0-m4tlf.gcp.mongodb.net/test?retryWrites=true&w=majority",
+        "databaseName": ""
+    },
+    "assetsUrl": "https://financialmodelingprep.com/api/v3/quote/{ticker}"
 }

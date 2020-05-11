@@ -1,14 +1,24 @@
 module.exports = context => {
 
-    async function insert(args) {
+    module.insert = async (args, dbname) => {
+        const db = await context.connect();
+        await db.collection(dbname).insertOne(args, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            else {
+                return result;
+            }
+        });
+    }
+
+    module.find = async (numberOfPage, totalPerPage, dbname) => {
 
     }
 
-    async function find(numberOfPage, totalPerPage) {
+    module.find = async (dbname) => {
 
     }
-    
-    async function find(){
 
-    }
+    return module;
 }
