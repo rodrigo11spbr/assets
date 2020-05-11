@@ -21,7 +21,6 @@ module.exports = (httpRepository, mongoRepository, log) => {
     }
 
     module.previousAsset = async (numberOfPage, totalPerPage) => {
-
         let result = [];
 
         if (numberOfPage && totalPerPage) {
