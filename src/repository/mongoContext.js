@@ -1,5 +1,3 @@
-class mongoContext{
+module.exports = () => {
 
 }
-
-module.exports = mongoContext;

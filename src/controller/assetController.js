@@ -1,27 +1,29 @@
 const route = require('express').Router();
 
-class assetController {
+module.exports = (app, usAsset) => {
 
-    constructor(app) {
-        this._init(app);
-    }
-
-    async _getTicker(request, response) {
+    route.get('/api/asset/real-time', async (request, response) => {
 
         let { ticker } = request.query;
 
         if (!ticker) {
-            return response.status(400).json({ message: 'ticker of instrumet are necessary' });
+            return response.status(400).json({ message: 'instrument ticker are necessary' });
         }
 
-        return response.json(ticker);
-    }
+        let result = usAsset;
+        return response.json(result.latestAsset(ticker));
 
-    _init(app) {
-        route.get('/api/asset', this._getTicker);
+    });
 
-        app.use(route);
-    }
+    route.get('/api/asset/previous', async (request, response) => {
+        let { numberOfPage, totalPerPage } = request.query;
+
+        if (!numberOfPage || !totalPerPage) {
+            return response.json({ assets: [] });
+        }
+
+        return response.json({ assets: [] });
+    });
+
+    app.use(route);
 }
-
-module.exports = assetController;

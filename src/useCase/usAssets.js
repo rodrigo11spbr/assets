@@ -1,10 +1,17 @@
-class usAssets {
 
-    constructor(mongoRepository, httpRepository) {
-        this.mongoRepository = mongoRepository;
-        this.httpRepository = httpRepository;
+module.exports = (httpRepository, mongoRepository) => {
+    module.latestAsset = (ticker) => {
+
+        let assets = httpRepository.GetAssetsByTicker(ticker);
+
+
+
+        return `ok latest ${ticker}`
     }
 
-}
+    module.previousAsset = (numberOfPage, totalPerPage) => {
+        return `ok previous ${numberOfPage} of ${totalPerPage}`
+    }
 
-module.exports = usAssets;
+    return module;
+}
