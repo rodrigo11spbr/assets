@@ -18,9 +18,9 @@ module.exports = (app, usAsset) => {
     route.get('/api/asset/previous', async (request, response) => {
         let { numberOfPage, totalPerPage } = request.query;
 
-        let result = usAsset.previousAsset(numberOfPage, totalPerPage);
+        let result = await usAsset.previousAsset(numberOfPage, totalPerPage);
 
-        return result.length !== 0 ? response.json(result) : response.status(404).json(result);
+        return response.json(result);
     });
 
     app.use(route);

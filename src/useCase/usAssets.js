@@ -20,8 +20,18 @@ module.exports = (httpRepository, mongoRepository, log) => {
         return data;
     }
 
-    module.previousAsset = (numberOfPage, totalPerPage) => {
-        return `ok previous ${numberOfPage} of ${totalPerPage}`
+    module.previousAsset = async (numberOfPage, totalPerPage) => {
+
+        let result = [];
+
+        if (numberOfPage && totalPerPage) {
+            result = await mongoRepository.findPagined(numberOfPage, totalPerPage, 'US_ASSETS');
+            return { pageNumber: numberOfPage, totalInPage: result.length, data: result }
+        }
+        else {
+            result = await mongoRepository.find('US_ASSETS');
+            return { totalInPage: result.length, data: result };
+        }
     }
 
     return module;
