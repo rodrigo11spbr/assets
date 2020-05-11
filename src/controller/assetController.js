@@ -10,7 +10,7 @@ module.exports = (app, usAsset) => {
             return response.status(400).json({ message: 'asset ticker are necessary' });
         }
 
-        let result = usAsset.latestAsset(ticker.toUpperCase());
+        let result = await usAsset.latestAsset(ticker.toUpperCase());
         return response.json(result);
     });
 

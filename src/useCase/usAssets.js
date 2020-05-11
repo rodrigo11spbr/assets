@@ -1,13 +1,13 @@
 
 module.exports = (httpRepository, mongoRepository) => {
-    module.latestAsset = (ticker) => {
+    module.latestAsset = async (ticker) => {
         try {
-            var asset = httpRepository.GetAssetsByTicker(ticker);
+            var asset = await httpRepository.GetAssetsByTicker(ticker);
         } catch (error) {
             // ERROR WAS THROW WHEN TRY TO GET ASSET
         }
 
-        return `ok latest ${ticker}`
+        return asset
     }
 
     module.previousAsset = (numberOfPage, totalPerPage) => {
