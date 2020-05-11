@@ -1,4 +1,4 @@
 {
     "mongoConnetionString": "",
-    "assetsUrl":""
+    "assetsUrl":"https://financialmodelingprep.com/api/v3/quote/{ticker}"
 }

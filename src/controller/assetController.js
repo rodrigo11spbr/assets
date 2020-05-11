@@ -7,11 +7,11 @@ module.exports = (app, usAsset) => {
         let { ticker } = request.query;
 
         if (!ticker) {
-            return response.status(400).json({ message: 'instrument ticker are necessary' });
+            return response.status(400).json({ message: 'asset ticker are necessary' });
         }
 
-        let result = usAsset;
-        return response.json(result.latestAsset(ticker));
+        let result = usAsset.latestAsset(ticker.toUpperCase());
+        return response.json(result);
 
     });
 
