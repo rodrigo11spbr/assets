@@ -11,7 +11,8 @@ module.exports = (app, usAsset) => {
         }
 
         let result = await usAsset.latestAsset(ticker.toUpperCase());
-        return response.json(result);
+
+        return result.length !== 0 ? response.json(result) : response.status(404).json(result);
     });
 
     route.get('/api/asset/previous', async (request, response) => {
