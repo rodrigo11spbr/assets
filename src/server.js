@@ -1,12 +1,30 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
 const path = require('path');
+const bunyan = require('bunyan');
+const seq = require('bunyan-seq');
+
+const log = bunyan.createLogger({
+    name: 'cripto-money',
+    streams: [
+        {
+            stream: process.stdout,
+            level: 'error'
+        }, {
+            stream: process.stdout,
+            level: 'info'
+        },
+        seq.createStream({
+            serverUrl: 'http://localhost:5341',
+            level: 'info'
+        })
+    ]
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(process.env.PORT || 8080, console.log("server is running"));
+app.listen(process.env.PORT || 8080, log.info('server was started'));
 
 const controllerPath = './src/controller';
-
 
 /**
  * resolving DI with IOC pattern
@@ -16,5 +34,5 @@ const controllerPath = './src/controller';
 let httpRepository = require('./repository/httpRepository');
 let mongoContext = require('./repository/mongoContext');
 let mongoRepository = require('./repository/mongoRepository')(mongoContext);
-let usAsset = require('./useCase/usAssets')(httpRepository, mongoRepository);
+let usAsset = require('./useCase/usAssets')(httpRepository, mongoRepository, log);
 require(path.resolve(controllerPath, 'assetController'))(app, usAsset);
