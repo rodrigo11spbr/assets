@@ -1,4 +1,4 @@
-FROM alpine:node
+FROM node:alpine
 
 WORKDIR /usr/app
 
@@ -6,7 +6,7 @@ COPY package.json ./
 
 RUN npm ci
 
-COPY . .
+COPY ["./src", .]
 
 EXPOSE 8080
 

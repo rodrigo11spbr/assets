@@ -8,6 +8,7 @@ module.exports = (httpRepository, mongoRepository, log) => {
             var data = await httpRepository.GetAssetsByTicker(ticker);
         } catch (error) {
             log.error('ERROR WAS THROW WHEN TRY TO GET ASSET', { error });
+            throw error;
         }
 
         try {
@@ -15,8 +16,6 @@ module.exports = (httpRepository, mongoRepository, log) => {
         } catch (error) {
             log.error('ERROR WHEN TRY TO SAVE ASSETS', { error });
         }
-
-        log.info("asset recovered", { data });
         return data;
     }
 
@@ -24,7 +23,7 @@ module.exports = (httpRepository, mongoRepository, log) => {
         let result = [];
 
         if (numberOfPage && totalPerPage) {
-            result = await mongoRepository.findPagined(numberOfPage, totalPerPage, 'US_ASSETS');
+            result = await mongoRepository.findPagined(parseInt(numberOfPage), parseInt(totalPerPage), 'US_ASSETS');
             return { pageNumber: numberOfPage, totalInPage: result.length, data: result }
         }
         else {

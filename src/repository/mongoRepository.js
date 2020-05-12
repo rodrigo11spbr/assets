@@ -1,5 +1,4 @@
 module.exports = context => {
-
     module.insert = async (args, dbname) => {
         let db = await context.connect();
         await db.collection(dbname).insertOne(args, (err, result) => {
@@ -23,6 +22,5 @@ module.exports = context => {
         let result = await db.collection(dbname).find().toArray();
         return result;
     }
-
     return module;
 }
