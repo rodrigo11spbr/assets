@@ -5,7 +5,7 @@ module.exports = (httpRepository, mongoRepository, log) => {
         ticker = Array.isArray(ticker) ? ticker.join(',').toUpperCase() : ticker.toUpperCase();
 
         try {
-            var data = await httpRepository.GetAssetsByTicker(ticker);
+            var data = await httpRepository.getAssetsByTicker(ticker);
         } catch (error) {
             log.error('ERROR WAS THROW WHEN TRY TO GET ASSET', { error });
             throw error;
