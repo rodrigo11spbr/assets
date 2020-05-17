@@ -4,13 +4,13 @@ module.exports = (app, usAsset) => {
 
     route.post('/api/asset/', async (request, response) => {
 
-        let { ticker } = request.body;
+        let { tickers } = request.body;
 
-        if (!ticker) {
+        if (!tickers) {
             return response.status(400).json({ message: 'asset ticker are necessary' });
         }
 
-        let result = await usAsset.latestAsset(ticker);
+        let result = await usAsset.latestAsset(tickers);
 
         return result.length !== 0 ? response.json(result) : response.status(404).json(result);
     });

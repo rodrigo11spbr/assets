@@ -1,15 +1,14 @@
-const supertest = require("supertest");
 const server = require('../../src/server');
-
-const apiServer = supertest(server);
-
+const request = require("supertest")(server);
 
 describe('when not send a valid ticker', () => {
-    test('should return bad request', async () => {
-        const { response } = await apiServer.post('/api/asset/', {
-            ticker: []
-        });
+    test('should return status code 400', () => {
+        request.post('/api/asset/').send({ tickers: [] }).expect(400)
+    });
+});
 
-        expect(response).toBe(400);
+describe('when send a valid tickers', () => {
+    test('should return status code 200 with body', () => {
+        request.post('/api/asset').send({ tickers: ['msft'] }).expect(200);
     });
 });

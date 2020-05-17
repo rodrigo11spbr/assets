@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon --inspect -r ./src/server.js",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "axios": "^0.19.2",

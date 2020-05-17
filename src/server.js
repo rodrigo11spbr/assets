@@ -7,23 +7,17 @@ const seq = require('bunyan-seq');
 const log = bunyan.createLogger({
     name: 'assets',
     streams: [
-        {
-            stream: process.stdout,
-            level: 'error'
-        }, {
-            stream: process.stdout,
-            level: 'info'
-        },
-        seq.createStream({
-            serverUrl: require('./settings.json').seqUrl,
-            level: 'info'
-        })
+        { stream: process.stdout, level: 'error' }, { stream: process.stdout, level: 'info' },
+        seq.createStream({ serverUrl: require('./settings.json').seqUrl, level: 'info' })
     ]
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(process.env.PORT || 8080, log.info('server was started'));
+
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(process.env.PORT || 8080, log.info('server was started'));
+}
 
 const controllerPath = './src/controller';
 
