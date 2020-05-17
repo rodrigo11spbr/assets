@@ -34,13 +34,25 @@ describe('when getAssetsByTicker on latestAsset throw error when try to save on 
     });
 });
 
-describe('when previousAsset pagined throw error', () => {
-    test('should throw exception and not continue', async () => {
+describe('when previousAsset pagined find 3 elements', () => {
+    test('should return model with data and informations about pagination', async () => {
         beforeAll(() => {
             mongoRepo.findPagined.mockResolvedValue(() => { [{ test: 'test' }, { test: 'test1' }, { test: 'test2' }] });
         });
         usAssets(null, mongoRepo, log).previousAsset(parseInt(0), parseInt(10), 'SomeTable').then(result => {
             expect(result).toBe({ pageNumber: 0, totalInPage: 2, data: [{ test: 'test' }, { test: 'test1' }, { test: 'test2' }] })
+        });
+    });
+});
+
+describe('when previousAsset without pagination find 1 element', () => {
+    test('should return model with data and itens finded', async () => {
+        beforeAll(() => {
+            mongoRepo.find.mockResolvedValue(() => { [{ test: 'test' }] });
+        });
+
+        usAssets(null, mongoRepo, log).previousAsset('someTable').then(result => {
+            expect(result).toBe({ totalInPage: 0, data: [{ test: 'test' }] });
         });
     });
 });
