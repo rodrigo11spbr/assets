@@ -31,6 +31,5 @@ module.exports = (httpRepository, mongoRepository, log) => {
             return { totalInPage: result.length, data: result };
         }
     }
-
     return module;
 }
