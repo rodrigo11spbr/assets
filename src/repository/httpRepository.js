@@ -1,6 +1,5 @@
 const axios = require('axios');
 const settings = require('../settings.json');
-const path = require('path');
 
 module.exports = {
     getAssetsByTicker: async (ticker) => {

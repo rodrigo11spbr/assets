@@ -5,7 +5,7 @@ const bunyan = require('bunyan');
 const seq = require('bunyan-seq');
 
 const log = bunyan.createLogger({
-    name: 'cripto-money',
+    name: 'assets',
     streams: [
         {
             stream: process.stdout,
@@ -37,3 +37,6 @@ let mongoContext = require('./repository/mongoContext');
 let mongoRepository = require('./repository/mongoRepository')(mongoContext);
 let usAsset = require('./useCase/usAssets')(httpRepository, mongoRepository, log);
 require(path.resolve(controllerPath, 'assetController'))(app, usAsset);
+
+
+module.exports = app;

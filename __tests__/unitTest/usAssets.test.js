@@ -1,10 +1,10 @@
-const usAssets = require('../src/useCase/usAssets');
+const usAssets = require('../../src/useCase/usAssets');
 
-const httpRepo = require('../src/repository/httpRepository');
-jest.mock('../src/repository/httpRepository');
+const httpRepo = require('../../src/repository/httpRepository');
+jest.mock('../../src/repository/httpRepository');
 
-const mongoRepo = require('../src/repository/mongoRepository');
-jest.mock('../src/repository/mongoRepository');
+const mongoRepo = require('../../src/repository/mongoRepository');
+jest.mock('../../src/repository/mongoRepository');
 
 const bunyan = require('bunyan');
 
