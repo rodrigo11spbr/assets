@@ -2,13 +2,13 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
-COPY package.json ./
+COPY package*.json ./
 
-COPY ["./src", ./]
-COPY ["./package-lock.json", ./]
-
+# npm CI helps you install faster, more reliable production dependencies
 RUN npm ci
 
-EXPOSE 8080
+COPY . .
+
+EXPOSE 3000
 
 CMD ["npm", "start"]
