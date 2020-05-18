@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon --inspect -r ./src/server.js",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest --forceExit"
   },
   "dependencies": {
     "axios": "^0.19.2",
