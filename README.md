@@ -1,5 +1,5 @@
 # Assets API
-
+![CI-CD](https://github.com/rodrigo11spbr/assets/workflows/CI-CD/badge.svg)
 ### Description
 
  >- Get assets properties from nasdaq
