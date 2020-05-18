@@ -16,10 +16,10 @@ jobs:
       with:
         node-version: '12'
     - name: installing depencencies
-    - run: npm ci
-    
+      run: npm ci
+
     - name: running tests
-    - run: npm test
+      run: npm test
   
   dockerize:
     needs: build
