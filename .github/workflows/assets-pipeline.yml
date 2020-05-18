@@ -17,15 +17,13 @@ jobs:
         node-version: [10.x, 12.x]
 
     steps:
-    - uses: sergioramos/yarn-actions/install@v6
-      with:
-        frozen-lockfile: true
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn install
-    - run: yarn test
+    - run: npm ci
+    - run: npm test
   
   dockerize:
     needs: build
