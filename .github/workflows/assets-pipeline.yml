@@ -15,7 +15,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12'
-    - run: npm install
+    - name: installing depencencies
+    - run: npm ci
+    
+    - name: running tests
     - run: npm test
   
   dockerize:
