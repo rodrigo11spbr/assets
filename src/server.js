@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== 'test') {
-    app.listen(process.env.PORT || 8080, log.info('server was started'));
+    app.listen(process.env.PORT || 2020, log.info('server was started'));
 }
 
 const controllerPath = './src/controller';
