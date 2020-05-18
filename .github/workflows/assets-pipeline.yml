@@ -21,7 +21,7 @@ jobs:
   dockerize:
     needs: build
     env:
-      IMAGE_NAME: '20200518'
+      IMAGE_NAME: ASSET_IMAGE
     runs-on: ubuntu-18.04
     if: github.event_name == 'push'
 
