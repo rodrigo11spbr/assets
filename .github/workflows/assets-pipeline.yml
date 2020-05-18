@@ -11,13 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - name: Setup Node
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-    - name: installing dependencies
-    - run: npm ci
-    - name: running tests
+        node-version: '12'
+    - run: npm install
     - run: npm test
   
   dockerize:
